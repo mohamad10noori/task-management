@@ -1,18 +1,32 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <add-new-task class="add-new-task"/>
+    <tasks class="tasks"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import AddNewTask from '../components/AddNewTask.vue';
+import Tasks from '../components/Tasks.vue'
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  }
+  components:{AddNewTask,Tasks}
 }
 </script>
+
+
+<style scoped>
+
+.home{
+  display: flex;
+  flex-direction: column;
+  height:calc(100% - (2.5rem + .375rem));
+}
+.add-new-task{
+  height: 40%;
+}
+.tasks{
+  height: 60%;
+}
+
+</style>

@@ -1,30 +1,69 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <the-header :title="routeName"></the-header>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
+<script>
+import TheHeader from "./components/Layout/TheHeader.vue";
+import { mapActions } from "vuex";
+export default {
+  components: { TheHeader },
+  methods: { ...mapActions(["setTasksLocalData"]) },
+  computed:{
+routeName(){
+  return this.$route.name;
+}
+  },
+  created() {
+    const tasksLocalData = JSON.parse(localStorage.getItem("tasksLocalData"));
+    this.setTasksLocalData(tasksLocalData);
+  },
+};
+</script>
+
 <style>
+body,
+html,
 #app {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+* {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
+input,
+textarea {
+  padding: 0.75rem;
+  resize: none;
+  background-color: #e9eaeb;
+  border: none;
+  outline: none;
+  border-radius: 2px 2px 0 0;
+  border-bottom: 0.5px #aaa solid;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+@media (min-width: 961px) {
+  #app{
+    width: 40%;
+    margin: auto;
+    background-color: #fff;
+  }
+  body{
+    background-color: #000;
+  }
 }
 </style>
