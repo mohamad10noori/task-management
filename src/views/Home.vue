@@ -1,8 +1,10 @@
 <template>
+
   <div class="home">
     <add-new-task class="add-new-task"/>
     <tasks class="tasks"/>
   </div>
+
 </template>
 
 <script>
@@ -28,5 +30,6 @@ export default {
 .tasks{
   height: 60%;
 }
+
 
 </style>

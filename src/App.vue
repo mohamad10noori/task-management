@@ -1,8 +1,12 @@
 <template>
+    <transition name="main" appear>
   <div>
     <the-header :title="routeName"></the-header>
   </div>
+    </transition>
+  <transition name="main" appear>
   <router-view />
+  </transition>
 </template>
 
 <script>
@@ -56,6 +60,27 @@ h6 {
   padding: 0;
   margin: 0;
 }
+
+
+
+.main-enter-from,
+.main-leave-to {
+  opacity: 0;
+}
+
+.main-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.main-leave-active {
+  transition: all 0.5s ease-in;
+}
+
+.main-enter-to,
+.main-leave-from {
+  opacity: 1;
+}
+
 @media (min-width: 961px) {
   #app{
     width: 40%;

@@ -1,8 +1,10 @@
 <template>
   <div class="container">
+      <transition name="drop">
     <div v-if="isOptionsOpen" @click="tryClose" class="backdrop"></div>
+      </transition>
     <div>
-      <div class="selected-option" @click="tryOpen">
+      <div class="selected-option" :class="isDisabled" @click="tryOpen">
         <div>{{ selectedOption }}</div>
         <span>
           <expand-icon />
@@ -49,6 +51,14 @@ export default {
       this.$emit("selectedOption", this.selectedOption);
     },
   },
+  computed:{
+      isDisabled(){
+          if(this.disabled){
+              return 'disable'
+          }
+          return''
+      }
+  },
   methods: {
     tryClose() {
       this.isOptionsOpen = false;
@@ -76,12 +86,11 @@ export default {
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
   z-index: 2;
 }
 .container {
   display: flex;
-
   padding: 0.75rem;
   resize: none;
   background-color: #e9eaeb;
@@ -97,6 +106,11 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+    cursor: pointer;
+}
+
+.disable{
+    cursor: auto;
 }
 
 ul {
@@ -122,6 +136,7 @@ li {
   vertical-align: middle;
   vertical-align: -webkit-baseline-middle;
   list-style: none;
+  cursor: pointer;
 }
 li:hover {
   background-color: #777;
@@ -131,21 +146,19 @@ li:hover {
 .drop-enter-from,
 .drop-leave-to {
   opacity: 0;
-  transform: scale(0.8);
 }
 
 .drop-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .drop-leave-active {
-  transition: all 0.3s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .drop-enter-to,
 .drop-leave-from {
   opacity: 1;
-  transform: scale(1);
 }
 
 @media (min-width: 961px) {

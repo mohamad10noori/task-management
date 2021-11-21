@@ -6,14 +6,15 @@ export default createStore({
   },
   mutations: {
     addNewTask(state, payload) {
-      state.tasksList.unshift(payload);
-
+      state.tasksList=[payload,...state.tasksList]
+      
       localStorage.setItem("tasksLocalData", JSON.stringify(state.tasksList));
     },
     editTask(state, payload) {
       let foundedIndex = state.tasksList.findIndex((task) => task.id === payload.id);
       console.log(payload)
       state.tasksList[foundedIndex] = payload;
+
       localStorage.setItem("tasksLocalData", JSON.stringify(state.tasksList));
     },
     setTasksLocalData(state, payload) {

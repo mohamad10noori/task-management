@@ -4,11 +4,13 @@
       <h3>Tasks</h3>
     </div>
     <div class="tasks-list">
+        <transition-group name="new-task">
       <task-card
         v-for="task in getTasksList"
         :key="task.id"
         :task="task"
       />
+        </transition-group>
     </div>
   </div>
 </template>
@@ -60,4 +62,23 @@ export default {
   margin: 0.3rem;
   box-shadow: #777 2px 2px 0px 0px;
 }
+
+
+
+.new-task-enter-from {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.new-task-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+
+.new-task-enter-to{
+  opacity: 1;
+  transform: scale(1);
+}
+
+
 </style>

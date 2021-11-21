@@ -6,7 +6,7 @@
     </div>
     <div class="status-and-edit-container">
       <div class="status-div">{{ task.status }}</div>
-      <div @click="goToEdit(task)"><edit-icon /></div>
+      <div class="edit-icon" @click="goToEdit(task)"><edit-icon /></div>
     </div>
   </div>
 </template>
@@ -83,5 +83,8 @@ export default {
   text-align: center;
   width: 5rem;
   color: #fff;
+}
+.edit-icon{
+    cursor: pointer;
 }
 </style>

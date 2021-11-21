@@ -68,11 +68,12 @@ button{
   fill: #fff;
   border-radius: 3px; 
   height: 40px;
+  cursor: pointer;
 }
 button>*{
     vertical-align: middle;
-    margin: 0 .25rem;
     vertical-align: -webkit-baseline-middle;
+    margin: 0 .25rem;
 }
 .cancel{
     background-color: #fff;
