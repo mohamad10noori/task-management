@@ -1,12 +1,14 @@
 <template>
-    <transition name="main" appear>
-  <div>
-    <the-header :title="routeName"></the-header>
-  </div>
-    </transition>
   <transition name="main" appear>
-  <router-view />
+    <div>
+      <the-header :title="routeName"></the-header>
+    </div>
   </transition>
+  <router-view v-slot="slotProps">
+    <transition name="main" mode="out-in" appear>
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <script>
@@ -15,10 +17,10 @@ import { mapActions } from "vuex";
 export default {
   components: { TheHeader },
   methods: { ...mapActions(["setTasksLocalData"]) },
-  computed:{
-routeName(){
-  return this.$route.name;
-}
+  computed: {
+    routeName() {
+      return this.$route.name;
+    },
   },
   created() {
     const tasksLocalData = JSON.parse(localStorage.getItem("tasksLocalData"));
@@ -61,8 +63,6 @@ h6 {
   margin: 0;
 }
 
-
-
 .main-enter-from,
 .main-leave-to {
   opacity: 0;
@@ -82,12 +82,12 @@ h6 {
 }
 
 @media (min-width: 961px) {
-  #app{
+  #app {
     width: 40%;
     margin: auto;
     background-color: #fff;
   }
-  body{
+  body {
     background-color: #000;
   }
 }
