@@ -71,13 +71,17 @@ export default {
 }
 
 .new-task-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 
 .new-task-enter-to{
   opacity: 1;
   transform: scale(1);
+}
+
+.new-task-move{
+  transition:transform .75s ease;
 }
 
 
